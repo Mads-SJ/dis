@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/01_ThreadsRepetition/01_ThreadsRepetition.iml" filepath="$PROJECT_DIR$/01_ThreadsRepetition/01_ThreadsRepetition.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02_WebScraping/02_WebScraping.iml" filepath="$PROJECT_DIR$/02_WebScraping/02_WebScraping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_Sockets/03_Sockets.iml" filepath="$PROJECT_DIR$/03_Sockets/03_Sockets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/03_TalkWorkshop/03_TalkWorkshop.iml" filepath="$PROJECT_DIR$/03_TalkWorkshop/03_TalkWorkshop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DIS-code.iml" filepath="$PROJECT_DIR$/DIS-code.iml" />
+    </modules>
+  </component>
+</project>
