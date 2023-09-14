@@ -21,6 +21,7 @@ public class TCPServer {
 			Socket connectionSocket = welcomeSocket.accept();
 			ObjectInputStream objectInputStream = new ObjectInputStream(connectionSocket.getInputStream());
 			List<Person> personer = (List<Person>) objectInputStream.readObject();
+			System.out.println("Personer modtaget fra klienten.");
 
 			for (Person person : personer) {
 				System.out.println(person);

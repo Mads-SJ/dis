@@ -24,7 +24,7 @@ public class ServerThread extends Thread {
 			if (clientSentence[1].contains(".ico")) {
 				outToClient.writeBytes("HTTP 404 Not Found\n");
 				outToClient.writeBytes("Connection: close\n\n");
-				outToClient.close();
+//				outToClient.close();
 				return;
 			}
 
@@ -36,7 +36,7 @@ public class ServerThread extends Thread {
 					+ clientSentence[1]);
 			outToClient.write(file);
 
-			outToClient.close();
+//			outToClient.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

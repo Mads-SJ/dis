@@ -20,11 +20,6 @@ public class TCPClient {
 		personer.add(p3);
 		personer.add(p4);
 
-
-		sendPersoner(personer);
-	}
-
-	public static void sendPersoner(ArrayList<Person> personer) throws Exception {
 		Socket clientSocket = new Socket("localhost",6789);
 		ObjectOutputStream outToServer = new ObjectOutputStream(clientSocket.getOutputStream());
 		outToServer.writeObject(personer);
