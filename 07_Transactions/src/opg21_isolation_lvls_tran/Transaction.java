@@ -1,48 +1,64 @@
+package opg21_isolation_lvls_tran;
+
 import java.sql.*;
 import java.util.Scanner;
 
-public class Transaction {
+public class Transaction { // lost update problem
     private static Connection dbConnection;
-    public static void main(String[] args) {
-// TODO Auto-generated method stub
+    public static void main(String[] args) throws SQLException {
         try {
             Scanner input = new Scanner(System.in);
+            dbConnection = connectDB();
+            dbConnection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            dbConnection.setAutoCommit(false);
+
+            logAccounts();
+
             System.out.println("MAKE TRANSACTION");
-            System.out.println("Enter FROM account number: ");
-            String fromAccount = input.nextLine();
-            System.out.println("Enter TO account number: ");
-            String toAccount = input.nextLine();
             System.out.println("Enter amount: ");
             int amount = Integer.parseInt(input.nextLine());
+            if (amount <= 0) {
+                throw new RuntimeException("Amount must be positive");
+            }
 
-            dbConnection = connectDB();
-
+            System.out.println("Enter FROM account number: ");
+            String fromAccount = input.nextLine();
             ResultSet result = getAccount(fromAccount);
             if (!result.next()) {
-                throw new RuntimeException("From account not found");
+                throw new RuntimeException("Account '" + fromAccount + "' does not exist");
             }
             int fromAccountBalance = result.getInt(2);
             if (fromAccountBalance < amount) {
-                throw new RuntimeException("Not enough money");
+                throw new RuntimeException("Not enough money on account");
             }
+
+            System.out.println("Enter TO account number: ");
+            String toAccount = input.nextLine();
+            System.out.println("Updating accounts...");
+
 
             result = getAccount(toAccount);
             if (!result.next()) {
-                throw new RuntimeException("To account not found");
+                throw new RuntimeException("Account '" + toAccount + "' does not exist");
             }
             int toAccountBalance = result.getInt(2);
+
+            System.out.println("Reads are done. Update by pressing any key.");
+            input.nextLine();
 
             updateAccount(fromAccount, fromAccountBalance - amount);
             updateAccount(toAccount, toAccountBalance + amount);
 
             logAccounts();
 
-            result.getStatement().close();
+            dbConnection.commit();
+
             if (dbConnection != null) {
                 dbConnection.close();
             }
         }
         catch (Exception e) {
+            dbConnection.rollback();
             e.printStackTrace();
         }
     }
