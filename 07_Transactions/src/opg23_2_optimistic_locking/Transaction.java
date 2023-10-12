@@ -1,5 +1,6 @@
 package opg23_2_optimistic_locking;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -23,7 +24,8 @@ public class Transaction {
             }
             System.out.println("Konto " + result.getInt(1) +
                     " har saldo " + result.getInt(2) + " og ejer " + result.getString(3) );
-            byte[] version = result.getBytes("version");
+            String version = result.getString("version");
+            // byte[] versionBytes = result.getBytes("version");
             System.out.println("version: " + version);
 
             System.out.println("Enter amount to insert: ");
@@ -40,8 +42,8 @@ public class Transaction {
 
             result = getAccount(accountNumber);
             if (!result.next()) {
-                throw new RuntimeException("Account " + accountNumber + " does not exist");
-            } else if (!Arrays.equals(result.getBytes("version"), version)) {
+                throw new RuntimeException("Account " + accountNumber + " has been deleted by another transaction");
+            } else if (!result.getString("version").equals(version)) {
                 throw new RuntimeException("Account " + accountNumber + " has been updated by another transaction");
             }
             updateAccount(accountNumber, accountBalance + amount);

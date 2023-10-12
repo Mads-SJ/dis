@@ -15,7 +15,7 @@ public class Transaction {
             logAccounts();
 
             // set isolation level to snapshot
-            dbConnection.setTransactionIsolation(SQLServerConnection.TRANSACTION_SNAPSHOT);
+            dbConnection.createStatement().execute("SET TRANSACTION ISOLATION LEVEL SNAPSHOT");
             dbConnection.setAutoCommit(false);
 
             System.out.println("MAKE DEPOSIT");
