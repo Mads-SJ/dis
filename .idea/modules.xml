@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/06_IoT/06_IoT.iml" filepath="$PROJECT_DIR$/06_IoT/06_IoT.iml" />
       <module fileurl="file://$PROJECT_DIR$/07_Transactions/07_Transactions.iml" filepath="$PROJECT_DIR$/07_Transactions/07_Transactions.iml" />
       <module fileurl="file://$PROJECT_DIR$/08_DDBWorkshop/08_DDBWorkshop.iml" filepath="$PROJECT_DIR$/08_DDBWorkshop/08_DDBWorkshop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/09_WebSecurity/09_WebSecurity.iml" filepath="$PROJECT_DIR$/09_WebSecurity/09_WebSecurity.iml" />
       <module fileurl="file://$PROJECT_DIR$/DIS-code.iml" filepath="$PROJECT_DIR$/DIS-code.iml" />
     </modules>
   </component>
